@@ -21,13 +21,13 @@ module.exports = {
     loaders: [//one one loader for this b/c only need to know js files
     {
         test: /\.jsx?$/, //? indicates we can use jsx file ext.
-        exclude: /node_module/,
-        loader: ['react-hot', 'babel?presets[]=react,presets[]=es2015']//module installed to help load app
+        exclude: /node_modules/,
+        loaders: ['react-hot', 'babel?presets[]=react,presets[]=es2015']//module installed to help load app
     }
     ]
   },
   plugins: [
       new webpack.HotModuleReplacementPlugin(),//live reloading
-      new webpack.NoErrosPlugin()//webpack won't compile if there are errors
+      new webpack.NoErrorsPlugin()//webpack won't compile if there are errors
   ]
 }
