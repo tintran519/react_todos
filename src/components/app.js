@@ -31,9 +31,16 @@ export default class App extends React.Component {
                 //binds 'this' b/c we want 'this' to refer to this component
                 createTask={this.createTask.bind(this)} />
             <TodosList
-                todos={this.state.todos} />
+                todos={this.state.todos}
+                toggleTask={this.toggleTask.bind(this)} />
         </div>
       );
+  }
+
+  toggleTask(task) {
+      const foundTodo = _.find(this.state.todos, todo => todo.task === task);
+      foundTodo.isCompleted = !foundTodo.isCompleted;
+      this.setState({ todos: this.state.todos })
   }
 
   createTask(task) {
