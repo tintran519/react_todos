@@ -27,9 +27,20 @@ export default class App extends React.Component {
     return (
         <div>
             <h1>React ToDo List App</h1>
-            <CreateTodo />
-            <TodosList todos={this.state.todos}/>
+            <CreateTodo
+                //binds 'this' b/c we want 'this' to refer to this component
+                createTask={this.createTask.bind(this)} />
+            <TodosList
+                todos={this.state.todos} />
         </div>
       );
+  }
+
+  createTask(task) {
+      this.state.todos.push({
+          task: task,
+          isCompleted: false
+      })
+      this.setState({ todos: this.state.todos })
   }
 }
