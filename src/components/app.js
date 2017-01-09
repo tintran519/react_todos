@@ -1,5 +1,6 @@
 import React from 'react';
-import TodosList from './todos_list'
+import CreateTodo from './create_todo';
+import TodosList from './todos_list';
 
 const todos = [
 {
@@ -25,9 +26,21 @@ export default class App extends React.Component {
   render() {
     return (
         <div>
-            <h1>React ToDos App</h1>
-            <TodosList todos={this.state.todos}/>
+            <h1>React ToDo List App</h1>
+            <CreateTodo
+                //binds 'this' b/c we want 'this' to refer to this component
+                createTask={this.createTask.bind(this)} />
+            <TodosList
+                todos={this.state.todos} />
         </div>
       );
+  }
+
+  createTask(task) {
+      this.state.todos.push({
+          task: task,
+          isCompleted: false
+      })
+      this.setState({ todos: this.state.todos })
   }
 }
