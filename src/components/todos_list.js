@@ -5,9 +5,14 @@ import TodosListItem from './todos_list_item';
 
 export default class TodosList extends React.Component {
   renderItems() {
-    // return _.map(this.props.todos, (todo, i) => <TodosListItem key={i}
+    //omit searches 1st parameter and leaves out w/e specified in 2nd parameter
+      const props = _.omit(this.props, 'todos');
+      console.log(props);
+     // return _.map(this.props.todos, (todo, i) => <TodosListItem key={i}
     //     {...todo} />);
-      return this.props.todos.map((item,i) => <TodosListItem key={i} task={item.task} isCompleted={item.isCompleted} />)
+      return this.props.todos.map((item,i) => <TodosListItem key={i}
+        task={item.task} isCompleted={item.isCompleted}
+        {...props} />)
   }
 
   render() {
